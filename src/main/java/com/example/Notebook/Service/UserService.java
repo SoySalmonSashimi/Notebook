@@ -2,11 +2,10 @@ package com.example.Notebook.Service;
 
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -54,6 +53,21 @@ public class UserService {
     public List<User> getAllUsers()
     {
         return userRepository.findAll();
+    }
+
+    /**
+     *  Update user by passing in user object and replacing with current user in database
+     */
+    @Transactional
+    public void UpdateUser(long id, User userData)
+    {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
+
+        existingUser.setName(userData.getName());
+        existingUser.setAge(userData.getAge());
+        existingUser.setJobTitle(userData.getJobTitle());
+
     }
 
 }

@@ -67,7 +67,16 @@ public class UserController {
         return service.CreateNewUser(user);
 
     }
+    /**
+     * Update database user by ID
+     *
+     */
 
+    @PutMapping("/UpdateUser/{id}")
+    public void updateUser(@PathVariable long id, @RequestBody User updateUserDetails)
+    {
+        service.UpdateUser(id,updateUserDetails);
+    }
 
 
 
