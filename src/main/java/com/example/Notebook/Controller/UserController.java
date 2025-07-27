@@ -78,6 +78,17 @@ public class UserController {
         service.UpdateUser(id,updateUserDetails);
     }
 
+    /**
+     * Deleting User By ID
+     *
+     * @param id
+     */
+    @DeleteMapping("/DeleteUser/{id}")
+    public void deleteUser(@PathVariable long id)
+    {
+            service.deleteUser(id);
+    }
+
 
 
 }

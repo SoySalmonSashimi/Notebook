@@ -5,6 +5,8 @@ import com.example.Notebook.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.List;
 
 @Service
@@ -69,5 +71,18 @@ public class UserService {
         existingUser.setJobTitle(userData.getJobTitle());
 
     }
+
+    /***
+     *  Delete User by id number
+     */
+    @Transactional
+    public void deleteUser(long userId)
+    {
+        userRepository.deleteById(userId);
+
+
+    }
+
+
 
 }
