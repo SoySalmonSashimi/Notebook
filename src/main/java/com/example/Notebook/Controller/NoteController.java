@@ -1,21 +1,22 @@
 package com.example.Notebook.Controller;
 
+import com.example.Notebook.DTO.NoteDto;
 import com.example.Notebook.Entity.Note;
 import com.example.Notebook.Service.NoteService;
-import com.example.Notebook.Service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/Note")
 public class NoteController {
-    private final UserService userService;
+
     private final NoteService noteService;
 
-
-    public NoteController(UserService userService, NoteService noteService) {
-        this.userService = userService;
+    public NoteController(NoteService noteService) {
         this.noteService = noteService;
     }
+
 
     /**
      *  Create Note For User by user ID
@@ -26,5 +27,9 @@ public class NoteController {
         noteService.generateNewNote(id,note);
     }
 
-
+    @GetMapping("/AllNotes/{id}")
+    public List<NoteDto> getAllNotesByUserId(@PathVariable long id)
+    {
+        return noteService.viewAllNotesByUser(id);
+    }
 }

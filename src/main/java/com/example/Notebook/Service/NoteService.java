@@ -1,5 +1,6 @@
 package com.example.Notebook.Service;
 
+import com.example.Notebook.DTO.NoteDto;
 import com.example.Notebook.Entity.Note;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.NoteRepository;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -30,5 +34,23 @@ public class NoteService {
         note.setCreatedDate(date);
         note.setUser(user);
         noteRepository.save(note);
+    }
+
+    @Transactional(readOnly = true)
+    public List<NoteDto> viewAllNotesByUser(long userId) {
+       List<Note> listOfNotes= noteRepository.findAllNoteByUserId(userId);
+       List<NoteDto> newListDto = new ArrayList<>();
+
+       for(Note note: listOfNotes)
+       {
+           NoteDto newNote = new NoteDto();
+          newNote.setNoteID(note.getNoteID());
+          newNote.setCreatedDate(note.getCreatedDate());
+          newNote.setTitle(note.getTitle());
+          newNote.setContent(note.getContent());
+          newNote.setStatus(note.isCompletionStatus());
+          newListDto.add(newNote);
+       }
+       return newListDto;
     }
 }
