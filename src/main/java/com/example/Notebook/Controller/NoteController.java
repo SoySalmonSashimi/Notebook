@@ -4,7 +4,6 @@ import com.example.Notebook.DTO.NoteDto;
 import com.example.Notebook.Entity.Note;
 import com.example.Notebook.Service.NoteService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -27,9 +26,25 @@ public class NoteController {
         noteService.generateNewNote(id,note);
     }
 
+    /**
+     * Get All Note from UserID by ID
+     * @param id
+     * @return
+     */
     @GetMapping("/AllNotes/{id}")
     public List<NoteDto> getAllNotesByUserId(@PathVariable long id)
     {
         return noteService.viewAllNotesByUser(id);
     }
+
+    /**
+     *  Find Note By Note ID and delete note
+     */
+    @DeleteMapping("/DeleteNote/{id}")
+    public void deleteNoteById(@PathVariable long id)
+    {
+        noteService.deleteNoteByID(id);
+    }
+
+
 }

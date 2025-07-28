@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -36,6 +35,11 @@ public class NoteService {
         noteRepository.save(note);
     }
 
+    @Transactional
+    public void deleteNoteByID(long noteID)
+    {
+        noteRepository.deleteById(noteID);
+    }
     @Transactional(readOnly = true)
     public List<NoteDto> viewAllNotesByUser(long userId) {
        List<Note> listOfNotes= noteRepository.findAllNoteByUserId(userId);

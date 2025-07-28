@@ -11,13 +11,13 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "noteid")
-    long noteID;
-    String title;
-    String content;
+    private long noteID;
+    private String title;
+    private String content;
     @Column(name = "created_date")
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
     @Column(name = "completion_status")
-    boolean completionStatus;
+    private boolean completionStatus;
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;

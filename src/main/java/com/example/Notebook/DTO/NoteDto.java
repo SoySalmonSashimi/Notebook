@@ -11,6 +11,7 @@ public class NoteDto {
     String content;
     LocalDateTime createdDate;
     boolean status;
+
     public NoteDto() {
 
     }

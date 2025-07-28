@@ -12,23 +12,23 @@ public class User {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "user_id") // Make sure it matches the column in DB
-        long userId;
-        String name;
-        int age;
-        String email;
-        String address;
-        String gender;
-        int income;
-        int dependency;
-        String country;
-        int contactNumber;
-        LocalDate birthday;
-        double height;
-        double weight;
+        private long userId;
+        private String name;
+        private int age;
+        private String email;
+        private String address;
+        private String gender;
+        private int income;
+        private int dependency;
+        private String country;
+        private int contactNumber;
+        private LocalDate birthday;
+        private double height;
+        private double weight;
         @Column(name = "job_title") // Make sure it matches the column in DB
-        String jobTitle;
+        private String jobTitle;
 
         @OneToMany(mappedBy = "user")
-        List<Note> listOfNotes;
+        private List<Note> listOfNotes;
 
 }
