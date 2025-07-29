@@ -14,10 +14,13 @@ public class Note {
     private long noteID;
     private String title;
     private String content;
+
     @Column(name = "created_date")
     private LocalDateTime createdDate;
+
     @Column(name = "completion_status")
     private boolean completionStatus;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;

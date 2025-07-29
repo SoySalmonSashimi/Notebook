@@ -40,6 +40,7 @@ public class NoteService {
     {
         noteRepository.deleteById(noteID);
     }
+
     @Transactional(readOnly = true)
     public List<NoteDto> viewAllNotesByUser(long userId) {
        List<Note> listOfNotes= noteRepository.findAllNoteByUserId(userId);

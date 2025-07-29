@@ -15,20 +15,32 @@ public class User {
         private long userId;
         private String name;
         private int age;
-        private String email;
+        private String emailAddress;
         private String address;
         private String gender;
-        private int income;
-        private int dependency;
         private String country;
         private int contactNumber;
         private LocalDate birthday;
-        private double height;
-        private double weight;
+
         @Column(name = "job_title") // Make sure it matches the column in DB
         private String jobTitle;
-
+        /**
+         *  Each user can have many notes
+         */
         @OneToMany(mappedBy = "user")
         private List<Note> listOfNotes;
+
+        /**
+         * Each user can have many sports activities
+         */
+        @OneToMany(mappedBy = "user")
+        private List<Health> listOfSportActivities;
+
+        /**
+         * Each user can have multiple finance report entry by Monthly
+         */
+        @OneToMany(mappedBy ="user")
+        private List<Finance> listOfFinanceTrackingActivities;
+
 
 }

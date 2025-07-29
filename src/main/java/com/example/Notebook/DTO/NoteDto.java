@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 @Data
 public class NoteDto {
 
-    long noteID;
-    String title;
-    String content;
-    LocalDateTime createdDate;
-    boolean status;
+    private long noteID;
+    private String title;
+    private String content;
+    private LocalDateTime createdDate;
+    private boolean status;
 
     public NoteDto() {
 

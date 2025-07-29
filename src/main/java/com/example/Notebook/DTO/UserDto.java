@@ -9,19 +9,19 @@ import java.util.List;
 @Data
 public class UserDto {
 
-    long userId;
-    String name;
-    int age;
-    String email;
-    String address;
-    String gender;
-    int income;
-    int dependency;
-    String country;
-    int contactNumber;
-    LocalDate birthday;
-    double height;
-    double weight;
-    String jobTitle;
-    List<Note> listOfNotes;
+    private long userId;
+    private String name;
+    private int age;
+    private String email;
+    private String address;
+    private String gender;
+    private int income;
+    private int dependency;
+    private String country;
+    private int contactNumber;
+    private LocalDate birthday;
+    private double height;
+    private double weight;
+    private String jobTitle;
+    private List<Note> listOfNotes;
 }
