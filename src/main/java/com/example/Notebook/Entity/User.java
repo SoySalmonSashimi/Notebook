@@ -19,7 +19,7 @@ public class User {
         private String address;
         private String gender;
         private String country;
-        private int contactNumber;
+        private long contactNumber;
         private LocalDate birthday;
 
         @Column(name = "job_title") // Make sure it matches the column in DB

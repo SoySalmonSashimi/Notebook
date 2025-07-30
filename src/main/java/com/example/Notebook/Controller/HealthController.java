@@ -2,9 +2,9 @@ package com.example.Notebook.Controller;
 
 import com.example.Notebook.DTO.HealthDto;
 import com.example.Notebook.Service.HealthService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/Health")
@@ -19,9 +19,23 @@ public class HealthController {
     }
 
     @GetMapping("/GetActivity/{id}")
-    private HealthDto getActivityById(long id)
+    private HealthDto getActivityById(@PathVariable long id)
     {
         return healthService.getHealthActivityById(id);
     }
+
+    @GetMapping("/getAllActivity/{id}")
+    private List<HealthDto> getAllActivityById(@PathVariable long userId)
+    {
+        return healthService.getAllHealthActivityById(userId);
+    }
+
+    @PostMapping("/AddActivity/{id}")
+    private void addActivityById(@PathVariable long userId,@RequestBody HealthDto healthDto)
+    {
+           healthService.addNewActivity(userId,healthDto);
+    }
+
+
 
 }
