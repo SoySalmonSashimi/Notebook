@@ -1,7 +1,6 @@
 package com.example.Notebook.Controller;
 
-import com.example.Notebook.DTO.NoteDto;
-import com.example.Notebook.Entity.Note;
+import com.example.Notebook.Dto.NoteDto;
 import com.example.Notebook.Service.NoteService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.Notebook.Service;
 
-import com.example.Notebook.DTO.HealthDto;
+import com.example.Notebook.Dto.HealthDto;
 import com.example.Notebook.Utils.HealthUtil;
 import com.example.Notebook.Entity.Health;
 import com.example.Notebook.Entity.User;

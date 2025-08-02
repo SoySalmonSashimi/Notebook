@@ -1,6 +1,6 @@
 package com.example.Notebook.Controller;
 
-import com.example.Notebook.DTO.HealthDto;
+import com.example.Notebook.Dto.HealthDto;
 import com.example.Notebook.Service.HealthService;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +36,7 @@ public class HealthController {
         healthService.addNewActivity(userId,healthDto);
     }
 
-    @DeleteMapping("/DeleteActivity/{userId}/{activityId")
+    @DeleteMapping("/DeleteActivity/{userId}/{activityId}")
     private void deleteActivity(long userId,long activityId)
     {
         healthService.deleteActivityById(userId,activityId);

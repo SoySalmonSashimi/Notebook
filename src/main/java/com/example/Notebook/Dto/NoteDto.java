@@ -1,4 +1,4 @@
-package com.example.Notebook.DTO;
+package com.example.Notebook.Dto;
 import lombok.Data;
 import java.time.LocalDateTime;
 

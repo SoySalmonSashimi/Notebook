@@ -1,6 +1,6 @@
 package com.example.Notebook.Utils;
 
-import com.example.Notebook.DTO.FinanceDto;
+import com.example.Notebook.Dto.FinanceDto;
 import com.example.Notebook.Entity.Finance;
 
 import java.util.ArrayList;

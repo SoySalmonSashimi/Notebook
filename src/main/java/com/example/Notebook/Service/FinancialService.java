@@ -1,12 +1,11 @@
 package com.example.Notebook.Service;
 
-import com.example.Notebook.DTO.FinanceDto;
+import com.example.Notebook.Dto.FinanceDto;
 import com.example.Notebook.Entity.Finance;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.FinanceRepository;
 import com.example.Notebook.Repository.UserRepository;
 import com.example.Notebook.Utils.FinanceUtil;
-import com.example.Notebook.Utils.HealthUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,13 +26,13 @@ public class FinancialService {
     }
 
     @Transactional(readOnly = false)
-    public void createFinancialEntry(long userId, FinanceDto financeDto)
+    public FinanceDto createFinancialEntry(long userId, FinanceDto financeDto)
     {
         User user = userRepository.findById(userId).orElseThrow(()-> new EntityNotFoundException("User Not Found " + userId));
         Finance finance = FinanceUtil.fromDto(financeDto);
         finance.setUser(user);
-        financialRepository.save(finance);
-
+        Finance saved =financialRepository.save(finance);
+        return FinanceUtil.toDto(saved);
     }
 
     @Transactional(readOnly = true)

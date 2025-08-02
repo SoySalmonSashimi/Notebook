@@ -1,6 +1,6 @@
 package com.example.Notebook.Service;
 
-import com.example.Notebook.DTO.UserDto;
+import com.example.Notebook.Dto.UserDto;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.UserRepository;
 import com.example.Notebook.Utils.UserUtil;

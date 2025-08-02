@@ -1,6 +1,6 @@
 package com.example.Notebook.Utils;
 
-import com.example.Notebook.DTO.HealthDto;
+import com.example.Notebook.Dto.HealthDto;
 import com.example.Notebook.Entity.Health;
 
 import java.util.ArrayList;

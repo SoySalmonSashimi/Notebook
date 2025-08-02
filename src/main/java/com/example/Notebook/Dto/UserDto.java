@@ -1,4 +1,4 @@
-package com.example.Notebook.DTO;
+package com.example.Notebook.Dto;
 
 import com.example.Notebook.Entity.Finance;
 import com.example.Notebook.Entity.Health;

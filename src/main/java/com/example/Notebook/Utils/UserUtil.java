@@ -1,6 +1,6 @@
 package com.example.Notebook.Utils;
 
-import com.example.Notebook.DTO.UserDto;
+import com.example.Notebook.Dto.UserDto;
 import com.example.Notebook.Entity.User;
 
 public class UserUtil {

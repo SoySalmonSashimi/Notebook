@@ -1,5 +1,5 @@
 package com.example.Notebook.Controller;
-import com.example.Notebook.DTO.UserDto;
+import com.example.Notebook.Dto.UserDto;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Service.UserService;
 import org.springframework.web.bind.annotation.*;
