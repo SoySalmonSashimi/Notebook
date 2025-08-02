@@ -1,4 +1,5 @@
 package com.example.Notebook.Controller;
+import com.example.Notebook.DTO.UserDto;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -61,10 +62,10 @@ public class UserController {
      * http://localhost:8080/User/CreateUser
      */
     @PostMapping("/CreateUser")
-    public User createUser(@RequestBody User user)
+    public User createUser(@RequestBody UserDto userDto)
     {
 
-        return service.CreateNewUser(user);
+        return service.CreateNewUser(userDto);
 
     }
     /**
@@ -73,9 +74,9 @@ public class UserController {
      */
 
     @PutMapping("/UpdateUser/{id}")
-    public void updateUser(@PathVariable long id, @RequestBody User updateUserDetails)
+    public void updateUser(@PathVariable long id, @RequestBody UserDto userDto)
     {
-        service.UpdateUser(id,updateUserDetails);
+        service.UpdateUser(id,userDto);
     }
 
     /**

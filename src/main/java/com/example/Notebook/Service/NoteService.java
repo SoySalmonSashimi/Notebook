@@ -5,12 +5,12 @@ import com.example.Notebook.Entity.Note;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.NoteRepository;
 import com.example.Notebook.Repository.UserRepository;
+import com.example.Notebook.Utils.NoteUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,11 +26,11 @@ public class NoteService {
     }
 
     @Transactional
-    public void generateNewNote(long id,Note note)
+    public void generateNewNote(long id,NoteDto noteDto)
     {
         User user = userRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("User not found with id " + id));
-        LocalDateTime date = LocalDateTime.now();
-        note.setCreatedDate(date);
+        Note note = NoteUtil.fromDto(noteDto);
+        note.setCreatedDate(LocalDateTime.now());
         note.setUser(user);
         noteRepository.save(note);
     }
@@ -44,18 +44,7 @@ public class NoteService {
     @Transactional(readOnly = true)
     public List<NoteDto> viewAllNotesByUser(long userId) {
        List<Note> listOfNotes= noteRepository.findAllNoteByUserId(userId);
-       List<NoteDto> newListDto = new ArrayList<>();
-
-       for(Note note: listOfNotes)
-       {
-           NoteDto newNote = new NoteDto();
-          newNote.setNoteID(note.getNoteID());
-          newNote.setCreatedDate(note.getCreatedDate());
-          newNote.setTitle(note.getTitle());
-          newNote.setContent(note.getContent());
-          newNote.setStatus(note.isCompletionStatus());
-          newListDto.add(newNote);
-       }
-       return newListDto;
+       return NoteUtil.toDtoList(listOfNotes);
     }
+
 }

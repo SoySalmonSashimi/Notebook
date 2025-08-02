@@ -16,14 +16,13 @@ public class NoteController {
         this.noteService = noteService;
     }
 
-
     /**
      *  Create Note For User by user ID
      */
     @PostMapping("/CreateNote/{id}")
-    public void createNoteById(@PathVariable long id, @RequestBody Note note)
+    public void createNoteById(@PathVariable long id, @RequestBody NoteDto noteDto)
     {
-        noteService.generateNewNote(id,note);
+        noteService.generateNewNote(id,noteDto);
     }
 
     /**

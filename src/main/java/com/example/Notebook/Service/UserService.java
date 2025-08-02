@@ -1,11 +1,12 @@
 package com.example.Notebook.Service;
 
+import com.example.Notebook.DTO.UserDto;
 import com.example.Notebook.Entity.User;
 import com.example.Notebook.Repository.UserRepository;
+import com.example.Notebook.Utils.UserUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -28,13 +29,12 @@ public class UserService {
 
     /**
      *  Transactional TO Create User From Data provided in json format
-     * @param user
+     * @param userDto
      * @return
      */
-    @Transactional
-    public User CreateNewUser(User user)
+    public User CreateNewUser(UserDto userDto)
     {
-        return userRepository.save(user);
+        return userRepository.save(UserUtil.fromDto(userDto));
     }
 
     /**
@@ -42,6 +42,7 @@ public class UserService {
      * @param id
      * @return
      */
+    @Transactional(readOnly = true)
     public User getUserById(long id)
     {
         return userRepository.findById(id).orElse(null);
@@ -52,6 +53,7 @@ public class UserService {
      * Getting all users that are currently in database
      * @ return list of users
      */
+    @Transactional(readOnly = true)
     public List<User> getAllUsers()
     {
         return userRepository.findAll();
@@ -61,15 +63,20 @@ public class UserService {
      *  Update user by passing in user object and replacing with current user in database
      */
     @Transactional
-    public void UpdateUser(long id, User userData)
+    public void UpdateUser(long id, UserDto userDto)
     {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
 
-        existingUser.setName(userData.getName());
-        existingUser.setAge(userData.getAge());
-        existingUser.setJobTitle(userData.getJobTitle());
-
+        existingUser.setName(userDto.getName());
+        existingUser.setAge(userDto.getAge());
+        existingUser.setJobTitle(userDto.getJobTitle());
+        existingUser.setContactNumber(userDto.getContactNumber());
+        existingUser.setBirthday(userDto.getBirthday());
+        existingUser.setAddress(userDto.getAddress());
+        existingUser.setListOfNotes(userDto.getListOfNotes());
+        existingUser.setListOfFinanceTrackingActivities(userDto.getListOfFinanceTrackingActivities());
+        existingUser.setListOfSportActivities(userDto.getListOfSportActivities());
     }
 
     /***

@@ -10,17 +10,17 @@ public class NoteDto {
     private String title;
     private String content;
     private LocalDateTime createdDate;
-    private boolean status;
+    private boolean completionStatus;
 
     public NoteDto() {
 
     }
-    public NoteDto(long noteID, String title, String content, LocalDateTime createdDate, boolean status) {
+    public NoteDto(long noteID, String title, String content, LocalDateTime createdDate, boolean completionStatus) {
         this.noteID = noteID;
         this.title = title;
         this.content = content;
         this.createdDate = createdDate;
-        this.status = status;
+        this.completionStatus = completionStatus;
     }
 
 

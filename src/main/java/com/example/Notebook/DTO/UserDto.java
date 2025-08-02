@@ -1,5 +1,7 @@
 package com.example.Notebook.DTO;
 
+import com.example.Notebook.Entity.Finance;
+import com.example.Notebook.Entity.Health;
 import com.example.Notebook.Entity.Note;
 import lombok.Data;
 
@@ -18,10 +20,12 @@ public class UserDto {
     private int income;
     private int dependency;
     private String country;
-    private int contactNumber;
+    private long contactNumber;
     private LocalDate birthday;
     private double height;
     private double weight;
     private String jobTitle;
     private List<Note> listOfNotes;
+    private List<Health> listOfSportActivities;
+    private List<Finance> listOfFinanceTrackingActivities;
 }

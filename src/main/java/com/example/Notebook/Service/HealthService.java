@@ -24,14 +24,14 @@ public class HealthService {
         this.userRepository = userRepository;
         this.healthRepository = healthRepository;
     }
-
+    @Transactional(readOnly = true)
     public HealthDto getHealthActivityById(long id)
     {
         Health healthActivity = healthRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Activity was not found :" +id));
         return HealthUtil.toDto(healthActivity);
     }
 
-
+    @Transactional(readOnly = true)
     public List<HealthDto> getAllHealthActivitiesById(long userId)
     {
         List<Health> listOfActivitiesByUser = healthRepository.findByUserUserId(userId);
