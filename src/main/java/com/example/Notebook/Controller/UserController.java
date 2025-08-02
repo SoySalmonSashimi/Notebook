@@ -62,7 +62,7 @@ public class UserController {
      * http://localhost:8080/User/CreateUser
      */
     @PostMapping("/CreateUser")
-    public User createUser(@RequestBody UserDto userDto)
+    public UserDto createUser(@RequestBody UserDto userDto)
     {
 
         return service.CreateNewUser(userDto);

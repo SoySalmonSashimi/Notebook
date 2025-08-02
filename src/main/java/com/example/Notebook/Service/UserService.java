@@ -32,9 +32,12 @@ public class UserService {
      * @param userDto
      * @return
      */
-    public User CreateNewUser(UserDto userDto)
+    @Transactional
+    public UserDto CreateNewUser(UserDto userDto)
     {
-        return userRepository.save(UserUtil.fromDto(userDto));
+        User user = UserUtil.fromDto(userDto);
+         userRepository.save(user);
+         return UserUtil.toDto(user);
     }
 
     /**
