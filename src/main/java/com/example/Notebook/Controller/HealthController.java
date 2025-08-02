@@ -18,22 +18,28 @@ public class HealthController {
         this.healthService = healthService;
     }
 
-    @GetMapping("/GetActivity/{id}")
-    private HealthDto getActivityById(@PathVariable long id)
+    @GetMapping("/GetActivity/{userId}")
+    private HealthDto getActivityById(@PathVariable long userId)
     {
-        return healthService.getHealthActivityById(id);
+        return healthService.getHealthActivityById(userId);
     }
 
-    @GetMapping("/getAllActivity/{id}")
-    private List<HealthDto> getAllActivityById(@PathVariable long userId)
+    @GetMapping("/getAllActivities/{userId}")
+    private List<HealthDto> getAllActivitiesById(@PathVariable long userId)
     {
-        return healthService.getAllHealthActivityById(userId);
+        return healthService.getAllHealthActivitiesById(userId);
     }
 
-    @PostMapping("/AddActivity/{id}")
+    @PostMapping("/AddActivity/{userId}")
     private void addActivityById(@PathVariable long userId,@RequestBody HealthDto healthDto)
     {
-           healthService.addNewActivity(userId,healthDto);
+        healthService.addNewActivity(userId,healthDto);
+    }
+
+    @DeleteMapping("/DeleteActivity/{userId}/{activityId")
+    private void deleteActivity(long userId,long activityId)
+    {
+        healthService.deleteActivityById(userId,activityId);
     }
 
 
