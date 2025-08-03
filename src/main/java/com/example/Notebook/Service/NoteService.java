@@ -26,13 +26,14 @@ public class NoteService {
     }
 
     @Transactional
-    public void generateNewNote(long id,NoteDto noteDto)
+    public NoteDto generateNewNote(long userId,NoteDto noteDto)
     {
-        User user = userRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("User not found with id " + id));
+        User user = userRepository.findById(userId).orElseThrow(()-> new EntityNotFoundException("User not found with id " + userId));
         Note note = NoteUtil.fromDto(noteDto);
         note.setCreatedDate(LocalDateTime.now());
         note.setUser(user);
-        noteRepository.save(note);
+        Note saved = noteRepository.save(note);
+        return NoteUtil.toDto(saved);
     }
 
     @Transactional

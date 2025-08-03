@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Finance")
+@RequestMapping("/finance")
 public class FinanceController {
 
     private final FinancialService financialService;
@@ -19,7 +19,7 @@ public class FinanceController {
     }
 
 
-    @PostMapping("/CreateFinancialEntry/{userId}")
+    @PostMapping("/user/{userId}/finance")
     public ResponseEntity<FinanceDto> createFinancialEntry(@PathVariable long userId, @RequestBody FinanceDto financeDto)
     {
         FinanceDto created =  financialService.createFinancialEntry(userId,financeDto);

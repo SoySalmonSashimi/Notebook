@@ -1,7 +1,8 @@
 package com.example.Notebook.Controller;
 import com.example.Notebook.Dto.UserDto;
-import com.example.Notebook.Entity.User;
 import com.example.Notebook.Service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +19,14 @@ public class UserController {
      *
      *  Instantiation of Service Layer
      */
-    private final UserService service;
+    private final UserService userService;
 
     /**
      * Dependency Injection
-     * @param service
+     * @param userService
      */
-    public UserController(UserService service) {
-        this.service = service;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
 
@@ -33,13 +34,14 @@ public class UserController {
      * Get Mapping Request to retrieve data from database
      * @GetMapping http://localhost:8080/User/{SpecifyID}
      * @PathVariable is used to extract id value for query in service
-     * @param id
+     * @param userId
      * @return User
      */
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable long id)
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable long userId)
     {
-        return service.getUserById(id);
+        UserDto userDto =  userService.getUserById(userId);
+        return ResponseEntity.ok(userDto);
     }
 
     /**
@@ -47,10 +49,11 @@ public class UserController {
      * http://localhost:8080/User/getAllUsers
      *
      */
-    @GetMapping("/getAllUsers")
-    public List<User> getAllUser()
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> getAllUser()
     {
-        return service.getAllUsers();
+        List<UserDto> listOfUser = userService.getAllUsers();
+        return ResponseEntity.ok(listOfUser);
     }
 
 
@@ -61,33 +64,34 @@ public class UserController {
      * Calls into service layer to create entity
      * http://localhost:8080/User/CreateUser
      */
-    @PostMapping("/CreateUser")
-    public UserDto createUser(@RequestBody UserDto userDto)
+    @PostMapping("/users")
+    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto)
     {
-
-        return service.CreateNewUser(userDto);
-
+          userService.CreateNewUser(userDto);
+          return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     /**
      * Update database user by ID
      *
      */
 
-    @PutMapping("/UpdateUser/{id}")
-    public void updateUser(@PathVariable long id, @RequestBody UserDto userDto)
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable long userId, @RequestBody UserDto userDto)
     {
-        service.UpdateUser(id,userDto);
+        UserDto updatedUser = userService.UpdateUser(userId,userDto);
+        return ResponseEntity.ok(updatedUser);
     }
 
     /**
      * Deleting User By ID
      *
-     * @param id
+     * @param userId
      */
-    @DeleteMapping("/DeleteUser/{id}")
-    public void deleteUser(@PathVariable long id)
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long userId)
     {
-            service.deleteUser(id);
+            userService.deleteUser(userId);
+            return ResponseEntity.noContent().build();
     }
 
 

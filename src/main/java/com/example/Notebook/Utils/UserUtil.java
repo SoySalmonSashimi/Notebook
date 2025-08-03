@@ -3,6 +3,9 @@ package com.example.Notebook.Utils;
 import com.example.Notebook.Dto.UserDto;
 import com.example.Notebook.Entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserUtil {
 
 
@@ -38,5 +41,31 @@ public class UserUtil {
         userDto.setListOfSportActivities(user.getListOfSportActivities());
         userDto.setListOfNotes(user.getListOfNotes());
         return userDto;
+    }
+
+    public static void updateUserFromDto(User existingUser, UserDto dto) {
+        existingUser.setName(dto.getName());
+        existingUser.setAge(dto.getAge());
+        existingUser.setJobTitle(dto.getJobTitle());
+        existingUser.setContactNumber(dto.getContactNumber());
+        existingUser.setBirthday(dto.getBirthday());
+        existingUser.setAddress(dto.getAddress());
+        existingUser.setListOfNotes(dto.getListOfNotes());
+        existingUser.setListOfFinanceTrackingActivities(dto.getListOfFinanceTrackingActivities());
+        existingUser.setListOfSportActivities(dto.getListOfSportActivities());
+    }
+
+    public static List<UserDto> toDtoList(List<User> listOfUser)
+    {
+        List<UserDto> listOfUserDto = new ArrayList<>();
+        UserDto userDto = null;
+        for(User user: listOfUser)
+        {
+            userDto = new UserDto();
+            listOfUserDto.add(UserUtil.toDto(user));
+
+        }
+        return listOfUserDto;
+
     }
 }

@@ -33,22 +33,23 @@ public class UserService {
      * @return
      */
     @Transactional
-    public UserDto CreateNewUser(UserDto userDto)
+    public void CreateNewUser(UserDto userDto)
     {
         User user = UserUtil.fromDto(userDto);
-         userRepository.save(user);
-         return UserUtil.toDto(user);
+         User saved = userRepository.save(user);
+
     }
 
     /**
      *  Getting user by passing id
-     * @param id
+     * @param userId
      * @return
      */
     @Transactional(readOnly = true)
-    public User getUserById(long id)
+    public UserDto getUserById(long userId)
     {
-        return userRepository.findById(id).orElse(null);
+        User user = userRepository.findById(userId).orElseThrow(()-> new EntityNotFoundException("User Not Found By " + userId) );
+        return UserUtil.toDto(user);
     }
 
 
@@ -57,29 +58,24 @@ public class UserService {
      * @ return list of users
      */
     @Transactional(readOnly = true)
-    public List<User> getAllUsers()
+    public List<UserDto> getAllUsers()
     {
-        return userRepository.findAll();
+        List<User> listOfUser = userRepository.findAll();
+
+        return UserUtil.toDtoList(listOfUser);
     }
 
     /**
      *  Update user by passing in user object and replacing with current user in database
      */
     @Transactional
-    public void UpdateUser(long id, UserDto userDto)
+    public UserDto UpdateUser(long userId, UserDto userDto)
     {
-        User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
 
-        existingUser.setName(userDto.getName());
-        existingUser.setAge(userDto.getAge());
-        existingUser.setJobTitle(userDto.getJobTitle());
-        existingUser.setContactNumber(userDto.getContactNumber());
-        existingUser.setBirthday(userDto.getBirthday());
-        existingUser.setAddress(userDto.getAddress());
-        existingUser.setListOfNotes(userDto.getListOfNotes());
-        existingUser.setListOfFinanceTrackingActivities(userDto.getListOfFinanceTrackingActivities());
-        existingUser.setListOfSportActivities(userDto.getListOfSportActivities());
+         UserUtil.updateUserFromDto(existingUser,userDto);
+         return UserUtil.toDto(existingUser);
     }
 
     /***

@@ -2,6 +2,8 @@ package com.example.Notebook.Controller;
 
 import com.example.Notebook.Dto.NoteDto;
 import com.example.Notebook.Service.NoteService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,30 +20,34 @@ public class NoteController {
     /**
      *  Create Note For User by user ID
      */
-    @PostMapping("/CreateNote/{id}")
-    public void createNoteById(@PathVariable long id, @RequestBody NoteDto noteDto)
+    @PostMapping("/user/{userId}")
+    public ResponseEntity<Void> createNoteById(@PathVariable long userId, @RequestBody NoteDto noteDto)
     {
-        noteService.generateNewNote(id,noteDto);
+        NoteDto saved = noteService.generateNewNote(userId,noteDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     /**
      * Get All Note from UserID by ID
-     * @param id
+     * @param userId
      * @return
      */
-    @GetMapping("/AllNotes/{id}")
-    public List<NoteDto> getAllNotesByUserId(@PathVariable long id)
+    @GetMapping("/user/{userid}")
+    public ResponseEntity<List<NoteDto>> getAllNotesByUserId(@PathVariable long userId)
     {
-        return noteService.viewAllNotesByUser(id);
+
+        List<NoteDto> listOfNotes = noteService.viewAllNotesByUser(userId);
+        return ResponseEntity.ok(listOfNotes);
     }
 
     /**
      *  Find Note By Note ID and delete note
      */
-    @DeleteMapping("/DeleteNote/{id}")
-    public void deleteNoteById(@PathVariable long id)
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Void> deleteNoteById(@PathVariable long userId)
     {
-        noteService.deleteNoteByID(id);
+        noteService.deleteNoteByID(userId);
+        return ResponseEntity.noContent().build();
     }
 
 
