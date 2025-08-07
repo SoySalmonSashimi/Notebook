@@ -29,14 +29,14 @@ public class HealthController {
         return ResponseEntity.ok(activity); // ok 200 status success
     }
 
-    @GetMapping("user/{userId}/activities")
+    @GetMapping("user/{userId}")
     private ResponseEntity<List<HealthDto>> getAllActivitiesById(@PathVariable long userId)
     {
         List<HealthDto> listOfHealthDto = healthService.getAllHealthActivitiesById(userId);
         return ResponseEntity.ok(listOfHealthDto); // ok 200 status success
     }
 
-    @PostMapping("user/{userId}/activities")
+    @PostMapping("user/{userId}")
     private ResponseEntity<Void> addActivityById(@PathVariable long userId,@RequestBody HealthDto healthDto)
     {
         healthService.addNewActivity(userId,healthDto);
