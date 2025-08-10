@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "user") // Ensure table name matches MySQL exactly
 public class User {
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "user_id") // Make sure it matches the column in DB
@@ -41,6 +42,12 @@ public class User {
          */
         @OneToMany(mappedBy ="user")
         private List<Finance> listOfFinanceTrackingActivities;
+
+        /**
+         * Each user can have multiple trading logs
+         */
+        @OneToMany(mappedBy = "user")
+        private List<TradeLog> listOfTradingLogsActivities;
 
 
 }

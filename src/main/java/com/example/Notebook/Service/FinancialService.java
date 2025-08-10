@@ -31,7 +31,7 @@ public class FinancialService {
         User user = userRepository.findById(userId).orElseThrow(()-> new EntityNotFoundException("User Not Found " + userId));
         Finance finance = FinanceUtil.fromDto(financeDto);
         finance.setUser(user);
-        Finance saved =financialRepository.save(finance);
+        Finance saved = financialRepository.save(finance);
         return FinanceUtil.toDto(saved);
     }
 
