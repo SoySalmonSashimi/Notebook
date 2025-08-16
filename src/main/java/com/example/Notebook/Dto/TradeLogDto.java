@@ -12,5 +12,5 @@ public class TradeLogDto {
     private int quantity;
     private double pnl;
     private String notes;
-    private byte[] data;
+
 }
