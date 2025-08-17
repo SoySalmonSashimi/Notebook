@@ -3,15 +3,16 @@ package com.example.Notebook.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Data
 @Entity
+@Table(name = "tradeImage")
 public class TradeImage {
     // Declaration of image storage into mysql
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "imageId" )
+    private Long imageId;
 
     private String filename;
 
@@ -20,7 +21,7 @@ public class TradeImage {
     private byte[] data;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "trade_log_id")
+    private TradeLog tradeLog;
 
 }

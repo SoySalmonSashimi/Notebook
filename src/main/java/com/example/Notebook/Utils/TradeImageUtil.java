@@ -9,7 +9,7 @@ public class TradeImageUtil {
     public static TradeImageDto toDto(TradeImage tradeImage)
     {
         TradeImageDto tradeImageDto = new TradeImageDto();
-        tradeImageDto.setId(tradeImage.getId());
+        tradeImageDto.setId(tradeImage.getImageId());
         tradeImageDto.setData(tradeImage.getData());
         tradeImageDto.setFilename(tradeImage.getFilename());
 
@@ -19,7 +19,7 @@ public class TradeImageUtil {
     public static TradeImage fromDto(TradeImageDto tradeImageDto)
     {
         TradeImage tradeImage = new TradeImage();
-        tradeImage.setId(tradeImageDto.getId());
+        tradeImage.setImageId(tradeImageDto.getId());
         tradeImage.setData(tradeImageDto.getData());
         tradeImage.setFilename(tradeImageDto.getFilename());
 

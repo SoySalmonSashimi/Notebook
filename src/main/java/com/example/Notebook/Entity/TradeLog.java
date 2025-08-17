@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "tradelog")
 public class TradeLog {
 
     @Id
@@ -21,7 +22,7 @@ public class TradeLog {
     private double pnl;
     private String notes;
 
-    @OneToMany(mappedBy = "tradingLog", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tradeLog", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TradeImage> listOfImages = new ArrayList<>();
 
     @ManyToOne
