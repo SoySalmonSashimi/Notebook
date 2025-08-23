@@ -39,20 +39,23 @@ public class TradeImageService {
 
 
     }
+
     @Transactional
     public TradeImage getImagesForUserTradeLog(long userId, long tradeLogId, long imageId) {
-        List<TradeImage> listOfTradeImage = tradeLogRepository.findByTradeIdAndUserUserId(tradeLogId,userId).orElseThrow(()-> new EntityNotFoundException("User ID / TradeLogID Not found ")).getListOfImages();
-        TradeImage tradeImage = new TradeImage();
-        for(TradeImage image: listOfTradeImage)
-        {
-            if(image.getImageId() == imageId)
-            {
-                tradeImage = image;
-            }
-            else image = null;
-        }
 
-        return tradeImage;
+//        TradeLog tradeLog = tradeLogRepository
+//                .findByTradeIdAndUserUserId(tradeLogId, userId)
+//                .orElseThrow(() -> new EntityNotFoundException("User ID / TradeLogID Not found"));
+//
+//
+//        return tradeLog.getListOfImages()
+//                .stream()
+//                .filter(img -> img.getImageId().equals(imageId))
+//                .findFirst()
+//                .orElseThrow(() -> new EntityNotFoundException("Image ID not found"));
+        return tradeImageRepository
+                .findByImageIdAndTradeLogTradeIdAndTradeLogUserUserId(imageId, tradeLogId, userId)
+                .orElseThrow(() -> new EntityNotFoundException("Image not found for this TradeLog/User"));
     }
 
     @Transactional(readOnly = true)

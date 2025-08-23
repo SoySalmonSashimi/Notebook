@@ -24,7 +24,7 @@ public class TradeImageController {
     }
 
 
-    @PostMapping("/{userId}/tradinglog/{tradingLogId}/images")
+    @PostMapping("/{userId}/tradelog/{tradingLogId}/image")
     public ResponseEntity<String> uploadImage(@PathVariable long userId, @PathVariable long tradingLogId, @RequestParam("file") MultipartFile file) throws IOException {
 
         tradeImageService.addImageToUserTradingLog(userId, tradingLogId, file);
@@ -32,7 +32,7 @@ public class TradeImageController {
     }
 
 
-    @GetMapping("/users/{userId}/tradelogs/{tradeLogId}/images/{imageId}")
+    @GetMapping("/{userId}/tradelog/{tradeLogId}/image/{imageId}")
     public ResponseEntity<byte[]> getImage(@PathVariable long userId, @PathVariable long tradeLogId, @PathVariable long imageId) {
 
         TradeImage image = tradeImageService.getImagesForUserTradeLog(userId,tradeLogId,imageId);
@@ -42,4 +42,5 @@ public class TradeImageController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(image.getData());
     }
+
 }

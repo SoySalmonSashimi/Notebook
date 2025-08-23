@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tradeImage")
+@Table(name = "trade_image")
 public class TradeImage {
     // Declaration of image storage into mysql
     @Id
@@ -21,7 +21,7 @@ public class TradeImage {
     private byte[] data;
 
     @ManyToOne
-    @JoinColumn(name = "trade_log_id")
+    @JoinColumn(name = "trade_id")
     private TradeLog tradeLog;
 
 }
