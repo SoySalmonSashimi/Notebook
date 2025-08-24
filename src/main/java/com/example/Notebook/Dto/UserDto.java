@@ -14,16 +14,12 @@ public class UserDto {
     private long userId;
     private String name;
     private int age;
-    private String email;
+    private String emailAddress;
     private String address;
     private String gender;
-    private int income;
-    private int dependency;
     private String country;
     private long contactNumber;
     private LocalDate birthday;
-    private double height;
-    private double weight;
     private String jobTitle;
     private List<Note> listOfNotes;
     private List<Health> listOfSportActivities;

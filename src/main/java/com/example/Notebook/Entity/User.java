@@ -16,10 +16,15 @@ public class User {
         private long userId;
         private String name;
         private int age;
+
+        @Column(name = "email_address")
         private String emailAddress;
+
         private String address;
         private String gender;
         private String country;
+
+        @Column(name = "contact_number")
         private long contactNumber;
         private LocalDate birthday;
 

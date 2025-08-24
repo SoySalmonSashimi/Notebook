@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Declaration of RestController Layer
  */
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/User")
 public class UserController {

@@ -14,6 +14,8 @@ public class UserUtil {
         User user = new User();
         user.setAge(userDto.getAge());
         user.setUserId(userDto.getUserId());
+        user.setName(userDto.getName());
+        user.setEmailAddress(userDto.getEmailAddress());
         user.setAddress(userDto.getAddress());
         user.setCountry(userDto.getCountry());
         user.setJobTitle(userDto.getJobTitle());
@@ -32,6 +34,8 @@ public class UserUtil {
         userDto.setAge(user.getAge());
         userDto.setUserId(user.getUserId());
         userDto.setAddress(user.getAddress());
+        userDto.setName(user.getName());
+        userDto.setEmailAddress(user.getEmailAddress());
         userDto.setCountry(user.getCountry());
         userDto.setJobTitle(user.getJobTitle());
         userDto.setBirthday(user.getBirthday());
@@ -47,6 +51,8 @@ public class UserUtil {
         existingUser.setName(dto.getName());
         existingUser.setAge(dto.getAge());
         existingUser.setJobTitle(dto.getJobTitle());
+        existingUser.setName(dto.getName());
+        existingUser.setEmailAddress(dto.getEmailAddress());
         existingUser.setContactNumber(dto.getContactNumber());
         existingUser.setBirthday(dto.getBirthday());
         existingUser.setAddress(dto.getAddress());
